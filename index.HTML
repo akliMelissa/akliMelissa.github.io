@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Melissa Akli | Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* MODIFICATION : Descriptions visibles par défaut sans clic */
+        .details {
+            display: block; 
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #1a1a1a;
+            border-left: 3px solid #D4AF37;
+            border-radius: 5px;
+            color: #ffffff !important;
+        }
+
+        /* Gestion de la langue par défaut */
+        .lang-en { display: none; }
+        .lang-fr { display: block; }
+        
+        /* Supprime le curseur pointeur car le clic n'est plus nécessaire */
+        .project-item, .project-card { cursor: default; }
+    </style>
+</head>
+<body class="dark-theme">
+
+    <div class="lang-switcher">
+        <button onclick="setLanguage('en')">EN</button>
+        <button onclick="setLanguage('fr')">FR</button>
+    </div>
+
+    <header class="hero">
+        <div class="header-container">
+            <div class="header-left">
+                <img src="pic2.png" alt="Melissa Akli" class="profile-img">
+            </div>
+            <div class="header-right">
+                <h1>Melissa Akli</h1>
+                <p class="gold-text">
+                    <span class="lang-fr">Étudiante en Master 1 Intelligence Artificielle & Data Science</span>
+                    <span class="lang-en">Master 1 Student in AI & Data Science</span>
+                </p>
+                <div class="contact-info">
+                    <p>📍 Toulouse | 📞 +33 7 58 74 92 63</p>
+                    <p>✉️ akli.melissa.personnel@gmail.com</p>
+                    <div class="links">
+                        <a href="https://github.com/akliMelissa" target="_blank">GitHub</a> | 
+                        <a href="https://www.linkedin.com/in/melissa-akli-387a171a8/" target="_blank">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <section class="projects-section">
+        <h2 class="gold-text">
+            <span class="lang-fr">Expériences Professionnelles</span>
+            <span class="lang-en">Professional Experience</span>
+        </h2>
+        
+        <div class="project-list">
+           <div class="project-item" onclick="toggleDetails('exp-chatbot')">
+                <h3>Chatbot Juridique (GraphRAG) - Made In Tracker</h3>
+                <div id="exp-chatbot" class="details">
+                    <div class="lang-fr">
+                        <p><strong>Développement d'un "NotebookLM Juridique"</strong> dédié à la conformité du Règlement sur les Dispositifs Médicaux (MDR).</p>
+                        <ul>
+                            <li><strong>Architecture GraphRAG :</strong> Transformation de documents PDF complexes en Graphes de Connaissances (Ontologies TBox/ABox) pour éliminer les hallucinations.</li>
+                            <li><strong>Agents IA :</strong> Orchestration d'agents autonomes via <strong>LangGraph</strong> et <strong>n8n</strong> utilisant le protocole MCP (Model Context Protocol).</li>
+                            <li><strong>Interface :</strong> Vue splitée permettant une traçabilité 100% vérifiable vers la source exacte du document.</li>
+                        </ul>
+                        <p><small>Tech: Python, Neo4j, LangGraph, Docker, spaCy.</small></p>
+                    </div>
+
+                    <div class="lang-en">
+                        <p><strong>Development of a "Legal NotebookLM"</strong> dedicated to Medical Device Regulation (MDR) compliance.</p>
+                        <ul>
+                            <li><strong>GraphRAG Architecture:</strong> Transforming complex PDF documents into Knowledge Graphs (TBox/ABox Ontologies) to eliminate hallucinations.</li>
+                            <li><strong>AI Agents:</strong> Orchestration of autonomous agents via <strong>LangGraph</strong> and <strong>n8n</strong> using the MCP (Model Context Protocol).</li>
+                            <li><strong>Interface:</strong> Split-view design ensuring 100% verifiable traceability to the exact document source.</li>
+                        </ul>
+                        <p><small>Tech: Python, Neo4j, LangGraph, Docker, spaCy.</small></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-item">
+                <h3>Stage IA - CodeAlpha</h3>
+               <div class="project-item" onclick="toggleDetails('exp-codealpha')">
+                    <h3>Stage IA - CodeAlpha</h3>
+                    <div id="exp-codealpha" class="details">
+                        <div class="lang-fr">
+                            <p>Stage de 2 mois  axé sur le développement de solutions d'IA concrètes :</p>
+                            <ul>
+                                <li><strong>Traitement du Langage (NLP) :</strong> Création d'un Chatbot FAQ intelligent avec <strong>NLTK</strong> et <strong>Scikit-learn</strong>, utilisant la similarité cosinus (TF-IDF) et l'analyse de sentiment.</li>
+                                <li><strong>Deep Learning Génératif :</strong> Implémentation d'un modèle <strong>WGAN-GP</strong> sous <strong>TensorFlow</strong> pour la génération autonome de musique (piano-roll MIDI).</li>
+                                <li><strong>Ingénierie Web :</strong> Développement d'une application de traduction multilingue avec <strong>Streamlit</strong> intégrée à l'API Google Translate.</li>
+                            </ul>
+                            <p><small>Tech: Python, TensorFlow, NLTK, Streamlit, Scikit-learn.</small></p>
+                        </div>
+
+                        <div class="lang-en">
+                            <p> 2 months Internship focused on developing practical AI solutions:</p>
+                            <ul>
+                                <li><strong>Natural Language Processing (NLP):</strong> Created an intelligent FAQ Chatbot using <strong>NLTK</strong> and <strong>Scikit-learn</strong>, featuring TF-IDF cosine similarity and sentiment analysis.</li>
+                                <li><strong>Generative Deep Learning:</strong> Implemented a <strong>WGAN-GP</strong> model with <strong>TensorFlow</strong> for autonomous music generation (MIDI piano-roll).</li>
+                                <li><strong>Web Engineering:</strong> Built a multilingual translation app using <strong>Streamlit</strong> integrated with the Google Translate API.</li>
+                            </ul>
+                            <p><small>Tech: Python, TensorFlow, NLTK, Streamlit, Scikit-learn.</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="gold-text">
+            <span class="lang-fr">Projets Académiques</span>
+            <span class="lang-en">Academic Projects</span>
+        </h2>
+        <div class="project-grid">
+            
+            <div class="project-card">
+                <h3>Performee (Site Web)</h3>
+                <div class="details">
+                    <p class="lang-fr">Plateforme web Full-Stack (React.js, PHP, MySQL) dédiée aux artistes : messagerie instantanée, gestion de comptes multi-rôles et portfolio multimédia.</p>
+                    <p class="lang-en">Full-stack web platform (React.js, PHP, MySQL) for artists: instant messaging, multi-role account management, and multimedia portfolio.</p>
+                    <a href="demo.HTML" class="btn-gold">Voir Démo</a>
+                    <a href="https://github.com/akliMelissa/projets_academiques/tree/master/performee%20site%20web" target="_blank" class="source-link">Source Code</a>
+
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3>Onitama (Jeu Vidéo)</h3>
+                <div class="details">
+                    <p class="lang-fr">Adaptation du jeu en Java. Implémentation d'une IA basée sur l'algorithme Minimax pour le calcul de coups optimaux.</p>
+                    <p class="lang-en">Java game adaptation. Implementation of an AI based on the Minimax algorithm for optimal move calculation.</p>
+                    <a href="https://github.com/akliMelissa/Onitama-" target="_blank" class="source-link">Source Code</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3>Classification des Émotions</h3>
+                <div class="details">
+                    <p class="lang-fr">Conception d'un modèle de Deep Learning (CNN) sous Keras/TensorFlow pour classer 8 émotions vocales (Dataset RAVDESS).</p>
+                    <p class="lang-en">Designed a Deep Learning (CNN) model using Keras/TensorFlow to classify 8 vocal emotions (RAVDESS Dataset).</p>
+                    <a href="https://github.com/akliMelissa/projets_ML"  target="_blank" class="source-link">Source Code</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3>Risque de Crédit</h3>
+                <div class="details">
+                    <p class="lang-fr">Analyse prédictive de solvabilité avec l'algorithme XGBoost. Déploiement d'une application interactive avec Streamlit.</p>
+                    <p class="lang-en">Predictive solvency analysis using the XGBoost algorithm. Deployment of an interactive app with Streamlit.</p>
+                    <a href="https://github.com/akliMelissa/projets_ML"  target="_blank" class="source-link">Source Code</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3>Éditeur de liens (C)</h3>
+                <div class="details">
+                    <p class="lang-fr">Développement en <strong>C</strong> d’un éditeur pour lecture/modification de fichiers <strong>ELF</strong>, intégré à un simulateur <strong>ARM</strong> avec tests automatisés <strong>Bash</strong>.</p>
+                    <p class="lang-en">Development in <strong>C</strong> of a linker for reading/modifying <strong>ELF</strong> files, integrated into an <strong>ARM</strong> simulator with <strong>Bash</strong> automated tests.</p>
+                    <a href="https://github.com/akliMelissa/projets_academiques/tree/master/%C3%89diteur%20de%20liens/source_code" 
+               target="_blank" class="source-link">Source Code</a>
+
+                    
+            </div>
+        </div>
+    </section>
+
+    
+
+    <script>
+        function setLanguage(lang) {
+            const frElements = document.querySelectorAll('.lang-fr');
+            const enElements = document.querySelectorAll('.lang-en');
+
+            if (lang === 'fr') {
+                frElements.forEach(el => el.style.display = 'block');
+                enElements.forEach(el => el.style.display = 'none');
+            } else {
+                frElements.forEach(el => el.style.display = 'none');
+                enElements.forEach(el => el.style.display = 'block');
+            }
+        }
+
+        // Initialisation au chargement
+        window.onload = () => setLanguage('fr');
+    </script>
+</body>
+</html>

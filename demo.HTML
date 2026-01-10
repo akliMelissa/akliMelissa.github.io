@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performee Demo | Melissa Akli</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .demo-container { padding: 40px 5%; text-align: center; }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border: 1px solid #333;
+            border-radius: 15px;
+            padding: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
+        }
+
+        .feature-card h3 { color: var(--gold); margin-bottom: 10px; }
+        
+        .feature-description {
+            color: var(--text-color);
+            font-size: 0.95em;
+            margin-bottom: 20px;
+            line-height: 1.5;
+            min-height: 60px;
+        }
+
+        .video-preview {
+            width: 100%;
+            height: 300px;
+            background: #000;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 1px solid #444;
+        }
+
+        .video-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95);
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .video-modal.active { display: flex; }
+
+        .modal-content {
+            width: 90%;
+            max-width: 1200px;
+            border: 2px solid var(--gold);
+            border-radius: 10px;
+        }
+
+        #modalImg {
+            max-width: 90%;
+            max-height: 80vh;
+            display: none;
+            border: 2px solid var(--gold);
+            border-radius: 10px;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px; right: 40px;
+            font-size: 50px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .modal-info {
+            margin-top: 20px;
+            color: var(--gold);
+            font-size: 1.6em;
+            font-weight: bold;
+        }
+
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            border-bottom: 1px solid #222;
+        }
+
+        .lang-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .lang-btn:hover {
+            background: var(--gold);
+            color: black;
+        }
+    </style>
+</head>
+<body class="dark-theme">
+
+    <nav class="header-nav">
+        <h1 class="gold-text" id="main-title">Performee : Plateforme Créative</h1>
+        <div class="lang-controls">
+            <button class="lang-btn" onclick="setLanguage('fr')">FR</button>
+            <button class="lang-btn" onclick="setLanguage('en')">EN</button>
+            <a href="index.HTML" class="btn-demo" id="back-btn" style="margin-left:20px;">← Retour</a>
+        </div>
+    </nav>
+
+    <div class="demo-container">
+        <div class="intro-text" id="intro-text-container">
+            </div>
+
+        <div class="feature-grid" id="grid-container">
+            </div>
+    </div>
+
+    <div id="videoModal" class="video-modal" onclick="closeVideo()">
+        <span class="close-modal">&times;</span>
+        <img id="modalImg" class="modal-content" src="">
+        <video id="modalPlayer" class="modal-content" controls autoplay>
+            <source id="modalSource" src="" type="video/mp4">
+        </video>
+        <div id="modalTitle" class="modal-info"></div>
+    </div>
+
+    <script>
+        const content = {
+            fr: {
+                mainTitle: "Performee : Plateforme Créative",
+                backBtn: "← Retour au Portfolio",
+                intro: "Performee est une application Full-Stack développée avec <strong>React.js, PHP et MySQL</strong>. Elle connecte les artistes avec des recruteurs à travers une interface fluide.",
+                features: [
+                    { id: 1, title: "Accueil & Landing Page", desc: "Interface immersive conçue avec React.js qui présente l'univers créatif de Performee.", file: "avant_connexion.mp4", type: "video" },
+                    { id: 2, title: "Inscription & Authentification", desc: "Système sécurisé développé en PHP pour la gestion des sessions utilisateurs.", file: "login.mp4", type: "video" },
+                    { id: 3, title: "Consultation des Profils", desc: "Affichage dynamique récupérant les données MySQL (bio, médias) des artistes.", file: "userprofile.mp4", type: "video" },
+                    { id: 4, title: "Gestion du Profil", desc: "Interface permettant à l'utilisateur de modifier ses informations et son portfolio en temps réel.", file: "uppdateprofile.mp4", type: "video" },
+                    { id: 5, title: "Recherche & Ratings", desc: "Moteur de recherche par catégorie et système de notation par étoiles.", file: "finatalent.mp4", type: "video" },
+                    { id: 6, title: "Postuler à un Job", desc: "Flux complet permettant aux artistes de postuler directement aux annonces de castings.", file: "find a jobandapply.mp4", type: "video" },
+                    { id: 7, title: "Espace Recruteur", desc: "Outil dédié aux professionnels pour créer et publier des offres détaillées.", file: "postajob.mp4", type: "video" },
+                    { id: 8, title: "Messagerie & Contacts", desc: "Espace d'échange direct géré via une table de messages MySQL.", file: "seemessages.png", type: "image" }
+                ]
+            },
+            en: {
+                mainTitle: "Performee: Creative Platform",
+                backBtn: "← Back to Portfolio",
+                intro: "Performee is a Full-Stack application built with <strong>React.js, PHP, and MySQL</strong>. It connects artists with recruiters through a smooth and interactive interface.",
+                features: [
+                    { id: 1, title: "Landing Page", desc: "Immersive interface built with React.js showcasing the Performee creative universe.", file: "avant_connexion.mp4", type: "video" },
+                    { id: 2, title: "Auth System", desc: "Secure PHP-based system for user registration and session management.", file: "login.mp4", type: "video" },
+                    { id: 3, title: "Artist Profiles", desc: "Dynamic display fetching MySQL data (bio, media) to present artists professionally.", file: "userprofile.mp4", type: "video" },
+                    { id: 4, title: "Profile Management", desc: "Real-time interface for users to edit personal info and their multimedia portfolio.", file: "uppdateprofile.mp4", type: "video" },
+                    { id: 5, title: "Search & Ratings", desc: "Category-based search engine and star rating system for community reliability.", file: "finatalent.mp4", type: "video" },
+                    { id: 6, title: "Job Application", desc: "Full workflow for artists to browse and apply directly to casting calls.", file: "find a jobandapply.mp4", type: "video" },
+                    { id: 7, title: "Recruiter Space", desc: "Dedicated tool for professionals to create and publish detailed job offers.", file: "postajob.mp4", type: "video" },
+                    { id: 8, title: "Messaging & Chat", desc: "Direct exchange space managed through a dedicated MySQL messages table.", file: "seemessages.png", type: "image" }
+                ]
+            }
+        };
+
+        function setLanguage(lang) {
+            document.getElementById('main-title').innerText = content[lang].mainTitle;
+            document.getElementById('back-btn').innerText = content[lang].backBtn;
+            document.getElementById('intro-text-container').innerHTML = `<p>${content[lang].intro}</p>`;
+            
+            const grid = document.getElementById('grid-container');
+            grid.innerHTML = '';
+
+            content[lang].features.forEach(f => {
+                const card = document.createElement('div');
+                card.className = 'feature-card';
+                card.onclick = () => openMedia(f.file, f.title, f.type);
+                
+                let mediaTag = f.type === 'video' 
+                    ? `<video class="video-preview" muted><source src="${f.file}"></video>`
+                    : `<img src="${f.file}" class="video-preview">`;
+
+                card.innerHTML = `
+                    <h3>${f.id}. ${f.title}</h3>
+                    <p class="feature-description">${f.desc}</p>
+                    ${mediaTag}
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function openMedia(src, title, type) {
+            const modal = document.getElementById('videoModal');
+            const player = document.getElementById('modalPlayer');
+            const img = document.getElementById('modalImg');
+            const titleEl = document.getElementById('modalTitle');
+
+            if(type === 'video') {
+                img.style.display = 'none';
+                player.style.display = 'block';
+                document.getElementById('modalSource').src = src;
+                player.load();
+                player.play();
+            } else {
+                player.style.display = 'none';
+                img.style.display = 'block';
+                img.src = src;
+            }
+
+            titleEl.innerText = title;
+            modal.classList.add('active');
+        }
+
+        function closeVideo() {
+            const modal = document.getElementById('videoModal');
+            document.getElementById('modalPlayer').pause();
+            modal.classList.remove('active');
+        }
+
+        // Initialisation
+        window.onload = () => setLanguage('fr');
+    </script>
+</body>
+</html>
