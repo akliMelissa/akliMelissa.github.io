@@ -35,7 +35,7 @@
     <header class="hero">
         <div class="header-container">
             <div class="header-left">
-                <img src="pic2.webp" alt="Melissa Akli" class="profile-img">
+                <img src="pic2.png" alt="Melissa Akli" class="profile-img">
             </div>
             <div class="header-right">
                 <h1>Melissa Akli</h1>
@@ -57,6 +57,25 @@
 
 
     <section class="projects-section">
+
+        <h2 class="gold-text">
+            <span class="lang-fr">À Propos</span>
+            <span class="lang-en">About Me</span>
+        </h2>
+        <div class="details">
+            <p class="lang-fr">
+                Salut ! Je suis Akli Melissa, étudiante en M1 Intelligence Artificielle, passionnée par l'IA et la robotique. Curieuse et motivée, j'adore explorer les nouveautés en IA (LLM, RAG, NLP...) et je cherche à acquérir de l'expérience concrète : un stage de 4 mois à partir de mai 2026 et une alternance à partir de septembre 2026 (rythme de 2 semaines par mois).
+                <br>
+                <strong>Je serais ravie de rejoindre votre équipe et de transformer les défis technologiques en opportunités d'innovation !</strong>
+            </p>
+            <p class="lang-en">
+                Hi! I'm Melissa Akli, an M1 AI student passionate about AI and robotics. Curious and driven, I love exploring the latest AI trends (LLMs, RAG, NLP...), and I'm looking for hands-on experience: a 4-month internship starting in May 2026 and a work-study program starting in September 2026 (2 weeks per month).
+                <br>
+                <strong>I would be delighted to join your team and turn technological challenges into opportunities for innovation!</strong>
+            </p>
+        </div>
+
+        
         <h2 class="gold-text">
             <span class="lang-fr">Expériences Professionnelles</span>
             <span class="lang-en">Professional Experience</span>
@@ -64,7 +83,11 @@
         
         <div class="project-list">
            <div class="project-item" onclick="toggleDetails('exp-chatbot')">
-                <h3>Chatbot Juridique (GraphRAG) - Made In Tracker</h3>
+                <h3 class="project-header">
+                    <span class="project-title">Chatbot Juridique (GraphRAG) - Made In Tracker</span>
+                    <span class="project-date">Oct. 2025 - Présent</span>
+                </h3>
+                
                 <div id="exp-chatbot" class="details">
                     <div class="lang-fr">
                         <p><strong>Développement d'un "NotebookLM Juridique"</strong> dédié à la conformité du Règlement sur les Dispositifs Médicaux (MDR).</p>
@@ -88,8 +111,7 @@
                 </div>
             </div>
 
-            <div class="project-item">
-                <h3>Stage IA - CodeAlpha</h3>
+            <div class="project-list">
                <div class="project-item" onclick="toggleDetails('exp-codealpha')">
                     <h3>Stage IA - CodeAlpha</h3>
                     <div id="exp-codealpha" class="details">
@@ -138,16 +160,17 @@
                 <h3>Onitama (Jeu Vidéo)</h3>
                 <div class="details">
                    <p class="lang-fr">
-                        Adaptation du jeu <strong>Onitama</strong> en Java avec deux interfaces <strong>Swing</strong>. 
-                        Intégration d'un mode multijoueur en réseau via <strong>WebSockets</strong> et d'une <strong>IA</strong> 
-                        performante basée sur l'algorithme <strong>Minimax</strong> pour le calcul de coups optimaux.
-                    </p>
+                    Adaptation du jeu Onitama en Java avec deux interfaces Swing. 
+                    Intégration d'un mode multijoueur en réseau via WebSockets et d'une IA 
+                    performante basée sur l'algorithme Minimax pour le calcul de coups optimaux.
+                </p>
 
-                    <p class="lang-en">
-                        Java adaptation of the game <strong>Onitama</strong> featuring two <strong>Swing</strong> interfaces. 
-                        Includes a networked multiplayer mode via <strong>WebSockets</strong> and a strategic 
-                        <strong>AI</strong> powered by the <strong>Minimax</strong> algorithm for optimal move calculation.
-                    </p>
+                <p class="lang-en">
+                    Java adaptation of the game Onitama featuring two Swing interfaces. 
+                    Includes a networked multiplayer mode via WebSockets and a strategic 
+                    AI powered by the Minimax algorithm for optimal move calculation.
+                </p>
+
                     <a href="https://github.com/akliMelissa/Onitama-" target="_blank" class="source-link">Source Code</a>
                 </div>
             </div>
