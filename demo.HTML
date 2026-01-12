@@ -4,14 +4,120 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Performee Demo | Melissa Akli</title>
-    <link rel="stylesheet" href="style.css">
     <style>
-        .demo-container { padding: 40px 5%; text-align: center; }
-        
+        :root {
+            --bg-color: #050505;
+            --card-bg: #121212;
+            --gold: #D4AF37;
+            --text-color: #E0E0E0;
+            --muted: #aaaaaa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        /* Header Navigation */
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            border-bottom: 1px solid #222;
+            flex-wrap: wrap;
+            gap: 15px;
+            position: sticky;
+            top: 0;
+            background: rgba(5, 5, 5, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .header-nav h1 {
+            font-size: 1.5em;
+            color: var(--gold);
+            margin: 0;
+        }
+
+        .lang-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 8px 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .lang-btn:hover {
+            background: var(--gold);
+            color: #000;
+        }
+
+        .btn-demo {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 8px 15px;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-demo:hover {
+            background: var(--gold);
+            color: #000;
+        }
+
+        /* Demo Container */
+        .demo-container {
+            padding: 40px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .intro-text {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 30px;
+            background: var(--card-bg);
+            border: 1px solid #333;
+            border-radius: 15px;
+        }
+
+        .intro-text p {
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+
+        .intro-text strong {
+            color: var(--gold);
+        }
+
+        /* Feature Grid */
         .feature-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
         }
 
         .feature-card {
@@ -21,53 +127,71 @@
             padding: 25px;
             cursor: pointer;
             transition: all 0.3s ease;
-            text-align: left;
+            display: flex;
+            flex-direction: column;
         }
 
         .feature-card:hover {
             transform: translateY(-5px);
             border-color: var(--gold);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
         }
 
-        .feature-card h3 { color: var(--gold); margin-bottom: 10px; }
-        
+        .feature-card h3 {
+            color: var(--gold);
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
         .feature-description {
             color: var(--text-color);
             font-size: 0.95em;
             margin-bottom: 20px;
-            line-height: 1.5;
-            min-height: 60px;
+            line-height: 1.6;
+            flex-grow: 1;
         }
 
         .video-preview {
             width: 100%;
-            height: 300px;
+            height: 250px;
             background: #000;
             border-radius: 10px;
             object-fit: cover;
             border: 1px solid #444;
+            transition: border-color 0.3s;
         }
 
+        .feature-card:hover .video-preview {
+            border-color: var(--gold);
+        }
+
+        /* Modal */
         .video-modal {
             display: none;
             position: fixed;
             z-index: 2000;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
             align-items: center;
             justify-content: center;
             flex-direction: column;
+            padding: 20px;
         }
 
-        .video-modal.active { display: flex; }
+        .video-modal.active {
+            display: flex;
+        }
 
         .modal-content {
             width: 90%;
             max-width: 1200px;
+            max-height: 80vh;
             border: 2px solid var(--gold);
             border-radius: 10px;
+            object-fit: contain;
         }
 
         #modalImg {
@@ -80,70 +204,139 @@
 
         .close-modal {
             position: absolute;
-            top: 20px; right: 40px;
+            top: 20px;
+            right: 40px;
             font-size: 50px;
             color: white;
             cursor: pointer;
+            z-index: 2001;
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: var(--gold);
         }
 
         .modal-info {
             margin-top: 20px;
             color: var(--gold);
-            font-size: 1.6em;
+            font-size: 1.4em;
             font-weight: bold;
+            text-align: center;
+            padding: 0 20px;
         }
 
-        .header-nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 5%;
-            border-bottom: 1px solid #222;
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-nav {
+                flex-direction: column;
+                text-align: center;
+                padding: 15px 5%;
+            }
+
+            .header-nav h1 {
+                font-size: 1.2em;
+            }
+
+            .lang-controls {
+                justify-content: center;
+                width: 100%;
+            }
+
+            .demo-container {
+                padding: 30px 4%;
+            }
+
+            .intro-text {
+                padding: 20px;
+                margin-bottom: 30px;
+            }
+
+            .intro-text p {
+                font-size: 1em;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .feature-card {
+                padding: 20px;
+            }
+
+            .video-preview {
+                height: 200px;
+            }
+
+            .close-modal {
+                top: 10px;
+                right: 20px;
+                font-size: 40px;
+            }
+
+            .modal-info {
+                font-size: 1.1em;
+                margin-top: 15px;
+            }
+
+            .modal-content {
+                width: 95%;
+                max-height: 70vh;
+            }
         }
 
-        .lang-controls {
-            display: flex;
-            gap: 10px;
-            align-items: center;
+        @media (max-width: 480px) {
+            .header-nav h1 {
+                font-size: 1em;
+            }
+
+            .lang-btn, .btn-demo {
+                padding: 6px 12px;
+                font-size: 0.85em;
+            }
+
+            .feature-card h3 {
+                font-size: 1.1em;
+            }
+
+            .feature-description {
+                font-size: 0.9em;
+            }
+
+            .video-preview {
+                height: 180px;
+            }
         }
 
-        .lang-btn {
-            background: transparent;
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            padding: 5px 10px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .lang-btn:hover {
-            background: var(--gold);
-            color: black;
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
         }
     </style>
 </head>
 <body class="dark-theme">
 
     <nav class="header-nav">
-        <h1 class="gold-text" id="main-title">Performee : Plateforme Créative</h1>
+        <h1 id="main-title">Performee : Plateforme Créative</h1>
         <div class="lang-controls">
             <button class="lang-btn" onclick="setLanguage('fr')">FR</button>
             <button class="lang-btn" onclick="setLanguage('en')">EN</button>
-            <a href="index.html" class="btn-demo" id="back-btn" style="margin-left:20px;">← Retour</a>
+            <a href="index.hmtl" class="btn-demo" id="back-btn">← Retour</a>
         </div>
     </nav>
 
     <div class="demo-container">
         <div class="intro-text" id="intro-text-container">
-            </div>
+        </div>
 
         <div class="feature-grid" id="grid-container">
-            </div>
+        </div>
     </div>
 
     <div id="videoModal" class="video-modal" onclick="closeVideo()">
         <span class="close-modal">&times;</span>
-        <img id="modalImg" class="modal-content" src="">
+        <img id="modalImg" class="modal-content" src="" alt="Feature preview">
         <video id="modalPlayer" class="modal-content" controls autoplay>
             <source id="modalSource" src="" type="video/mp4">
         </video>
@@ -199,7 +392,7 @@
                 
                 let mediaTag = f.type === 'video' 
                     ? `<video class="video-preview" muted><source src="${f.file}"></video>`
-                    : `<img src="${f.file}" class="video-preview">`;
+                    : `<img src="${f.file}" class="video-preview" alt="${f.title}">`;
 
                 card.innerHTML = `
                     <h3>${f.id}. ${f.title}</h3>
@@ -237,6 +430,16 @@
             document.getElementById('modalPlayer').pause();
             modal.classList.remove('active');
         }
+
+        // Prevent modal close when clicking on video/image
+        document.addEventListener('DOMContentLoaded', function() {
+            const modalContent = document.querySelectorAll('.modal-content');
+            modalContent.forEach(el => {
+                el.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            });
+        });
 
         // Initialisation
         window.onload = () => setLanguage('fr');
