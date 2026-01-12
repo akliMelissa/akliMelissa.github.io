@@ -3,263 +3,579 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Melissa Akli | Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Melissa Akli - CV</title>
     <style>
-        /* MODIFICATION : Descriptions visibles par défaut sans clic */
-        .details {
-            display: block; 
-            margin-top: 15px;
-            padding: 15px;
-            background-color: #1a1a1a;
-            border-left: 3px solid #D4AF37;
-            border-radius: 5px;
-            color: #ffffff !important;
+        :root {
+            --bg-color: #050505;
+            --card-bg: #121212;
+            --gold: #D4AF37;
+            --text-color: #E0E0E0;
+            --muted: #aaaaaa;
         }
 
-        /* Gestion de la langue par défaut */
-        .lang-en { display: none; }
-        .lang-fr { display: block; }
-        
-        /* Supprime le curseur pointeur car le clic n'est plus nécessaire */
-        .project-item, .project-card { cursor: default; }
-    </style>
-</head>
-<body class="dark-theme">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <div class="lang-switcher">
-        <button onclick="setLanguage('en')">EN</button>
-        <button onclick="setLanguage('fr')">FR</button>
-    </div>
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            padding-top: 60px;
+        }
 
-    <header class="hero">
-        <div class="header-container">
-            <div class="header-left">
-                <img src="pic2.webp" alt="Melissa Akli" class="profile-img">
-            </div>
-            <div class="header-right">
-                <h1>Melissa Akli</h1>
-                <p class="gold-text">
-                    <span class="lang-fr">Étudiante en Master 1 Intelligence Artificielle & Data Science</span>
-                    <span class="lang-en">Master 1 Student in AI & Data Science</span>
-                </p>
-                <div class="contact-info">
-                    <p>📍 Toulouse | 📞 +33 7 58 74 92 63</p>
-                    <p>✉️ akli.melissa.personnel@gmail.com</p>
-                    <div class="links">
-                        <a href="https://github.com/akliMelissa" target="_blank">GitHub</a> | 
-                        <a href="https://www.linkedin.com/in/melissa-akli-387a171a8/" target="_blank">LinkedIn</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
+        /* Navigation fixe */
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(5, 5, 5, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #222;
+            z-index: 1000;
+            padding: 15px 0;
+        }
 
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
 
-    <section class="projects-section">
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
 
-        <h2 class="gold-text">
-            <span class="lang-fr">À Propos</span>
-            <span class="lang-en">About Me</span>
-        </h2>
-        <div class="details">
-            <p class="lang-fr">
-                Salut ! Je suis Akli Melissa, étudiante en M1 Intelligence Artificielle, passionnée par l'IA et la robotique. Curieuse et motivée, j'adore explorer les nouveautés en IA (LLM, RAG, NLP...) et je cherche à acquérir de l'expérience concrète : un stage de 4 mois à partir de mai 2026 et une alternance à partir de septembre 2026 (rythme de 2 semaines par mois).
-                <br>
-                <strong>Je serais ravie de rejoindre votre équipe et de transformer les défis technologiques en opportunités d'innovation !</strong>
-            </p>
-            <p class="lang-en">
-                Hi! I'm Melissa Akli, an M1 AI student passionate about AI and robotics. Curious and driven, I love exploring the latest AI trends (LLMs, RAG, NLP...), and I'm looking for hands-on experience: a 4-month internship starting in May 2026 and a work-study program starting in September 2026 (2 weeks per month).
-                <br>
-                <strong>I would be delighted to join your team and turn technological challenges into opportunities for innovation!</strong>
-            </p>
-        </div>
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: color 0.3s;
+            padding: 5px 10px;
+        }
 
-        
-        <h2 class="gold-text">
-            <span class="lang-fr">Expériences Professionnelles</span>
-            <span class="lang-en">Professional Experience</span>
-        </h2>
-        
-        <div class="project-list">
-           <div class="project-item" onclick="toggleDetails('exp-chatbot')">
-                <h3 class="project-header">
-                    <span class="project-title">Chatbot Juridique (GraphRAG) - Made In Tracker</span>
-                    <span class="project-date">Oct. 2025 - Présent</span>
-                </h3>
-                
-                <div id="exp-chatbot" class="details">
-                    <div class="lang-fr">
-                        <p><strong>Développement d'un "NotebookLM Juridique"</strong> dédié à la conformité du Règlement sur les Dispositifs Médicaux (MDR).</p>
-                        <ul>
-                            <li><strong>Architecture GraphRAG :</strong> Transformation de documents PDF complexes en Graphes de Connaissances (Ontologies TBox/ABox) pour éliminer les hallucinations.</li>
-                            <li><strong>Agents IA :</strong> Orchestration d'agents autonomes via <strong>LangGraph</strong> et <strong>n8n</strong> utilisant le protocole MCP (Model Context Protocol).</li>
-                            <li><strong>Interface :</strong> Vue splitée permettant une traçabilité 100% vérifiable vers la source exacte du document.</li>
-                        </ul>
-                        <p><small>Tech: Python, Neo4j, LangGraph, Docker, spaCy.</small></p>
-                    </div>
+        .nav-links a:hover {
+            color: var(--gold);
+        }
 
-                    <div class="lang-en">
-                        <p><strong>Development of a "Legal NotebookLM"</strong> dedicated to Medical Device Regulation (MDR) compliance.</p>
-                        <ul>
-                            <li><strong>GraphRAG Architecture:</strong> Transforming complex PDF documents into Knowledge Graphs (TBox/ABox Ontologies) to eliminate hallucinations.</li>
-                            <li><strong>AI Agents:</strong> Orchestration of autonomous agents via <strong>LangGraph</strong> and <strong>n8n</strong> using the MCP (Model Context Protocol).</li>
-                            <li><strong>Interface:</strong> Split-view design ensuring 100% verifiable traceability to the exact document source.</li>
-                        </ul>
-                        <p><small>Tech: Python, Neo4j, LangGraph, Docker, spaCy.</small></p>
-                    </div>
-                </div>
-            </div>
+        .lang-switcher {
+            display: flex;
+            gap: 10px;
+        }
 
-            <div class="project-list">
-               <div class="project-item" onclick="toggleDetails('exp-codealpha')">
-                    <h3>Stage IA - CodeAlpha</h3>
-                    <div id="exp-codealpha" class="details">
-                        <div class="lang-fr">
-                            <p>Stage de 2 mois  axé sur le développement de solutions d'IA concrètes :</p>
-                            <ul>
-                                <li><strong>Traitement du Langage (NLP) :</strong> Création d'un Chatbot FAQ intelligent avec <strong>NLTK</strong> et <strong>Scikit-learn</strong>, utilisant la similarité cosinus (TF-IDF) et l'analyse de sentiment.</li>
-                                <li><strong>Deep Learning Génératif :</strong> Implémentation d'un modèle <strong>WGAN-GP</strong> sous <strong>TensorFlow</strong> pour la génération autonome de musique (piano-roll MIDI).</li>
-                                <li><strong>Ingénierie Web :</strong> Développement d'une application de traduction multilingue avec <strong>Streamlit</strong> intégrée à l'API Google Translate.</li>
-                            </ul>
-                            <p><small>Tech: Python, TensorFlow, NLTK, Streamlit, Scikit-learn.</small></p>
-                        </div>
+        .lang-switcher button {
+            background: transparent;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            padding: 5px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
 
-                        <div class="lang-en">
-                            <p> 2 months Internship focused on developing practical AI solutions:</p>
-                            <ul>
-                                <li><strong>Natural Language Processing (NLP):</strong> Created an intelligent FAQ Chatbot using <strong>NLTK</strong> and <strong>Scikit-learn</strong>, featuring TF-IDF cosine similarity and sentiment analysis.</li>
-                                <li><strong>Generative Deep Learning:</strong> Implemented a <strong>WGAN-GP</strong> model with <strong>TensorFlow</strong> for autonomous music generation (MIDI piano-roll).</li>
-                                <li><strong>Web Engineering:</strong> Built a multilingual translation app using <strong>Streamlit</strong> integrated with the Google Translate API.</li>
-                            </ul>
-                            <p><small>Tech: Python, TensorFlow, NLTK, Streamlit, Scikit-learn.</small></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        .lang-switcher button:hover,
+        .lang-switcher button.active {
+            background: var(--gold);
+            color: #000;
+        }
 
-    
-        <h2 class="gold-text">
-            <span class="lang-fr">Informations Complémentaires</span>
-            <span class="lang-en">Extra Info</span>
-        </h2>
-        <div class="details">
-            <p>
-                <strong> <span class="lang-fr">Langues :</span><span class="lang-en">Languages:</span></strong> 
-                Français (C1) .  Anglais (C1) .  Berbère (Maternel)
-            </p>
+        /* Menu hamburger mobile */
+        .menu-toggle {
+            display: none;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 8px 15px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
 
-            <p>
-                <strong> <span class="lang-fr">Engagement :</span><span class="lang-en">Engagement:</span></strong> 
-                <span class="lang-fr">Membre actif des clubs Ensia - SecAi, ETC</span>
-                <span class="lang-en">Active member of Ensia - SecAi, ETC scientific clubs</span>
-            </p>
+        /* Container principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-            <p>
-                <strong><span class="lang-fr">Expérience Complémentaire :</span><span class="lang-en">Additional Experience:</span></strong> 
-                <span class="lang-fr">Serveuse (2024) - Au Mets Cliché, Grenoble</span>
-                <span class="lang-en">Waitress (2024) - Au Mets Cliché, Grenoble</span>
-            </p>
+        /* Header/Hero Section */
+        .hero {
+            padding: 60px 20px;
+            border-bottom: 1px solid #222;
+        }
 
-            <p>
-                <strong><span class="lang-fr">Centres d’intérêt :</span><span class="lang-en">Interests:</span></strong> 
-                <span class="lang-fr">Programmation, Voyages, Sport, Lecture</span>
-                <span class="lang-en">Programming, Traveling, Sports, Reading</span>
-            </p>
-        </div>
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
 
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 3px solid var(--gold);
+            object-fit: cover;
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.15);
+        }
 
+        .header-right {
+            flex: 1;
+            min-width: 300px;
+            text-align: left;
+        }
 
-        <h2 class="gold-text">
-            <span class="lang-fr">Projets Académiques</span>
-            <span class="lang-en">Academic Projects</span>
-        </h2>
+        .header-right h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
 
-        <div class="project-grid">
-            <div class="project-card">
-                <h3>Performee (Site Web)</h3>
-                <div class="details">
-                    <p class="lang-fr">Plateforme web Full-Stack (React.js, PHP, MySQL) dédiée aux artistes : messagerie instantanée, gestion de comptes multi-rôles et portfolio multimédia.</p>
-                    <p class="lang-en">Full-stack web platform (React.js, PHP, MySQL) for artists: instant messaging, multi-role account management, and multimedia portfolio.</p>
-                    <a href="demo.HTML" class="btn-gold">Voir Démo</a>
-                    <a href="https://github.com/akliMelissa/projets_academiques/tree/master/performee%20site%20web" target="_blank" class="source-link">Source Code</a>
+        .gold-text {
+            color: var(--gold);
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9em;
+        }
 
-                </div>
-            </div>
+        .links {
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
 
-            <div class="project-card">
-                <h3>Onitama (Jeu Vidéo)</h3>
-                <div class="details">
-                   <p class="lang-fr">
-                    Adaptation du jeu Onitama en Java avec deux interfaces Swing. 
-                    Intégration d'un mode multijoueur en réseau via WebSockets et d'une IA 
-                    performante basée sur l'algorithme Minimax pour le calcul de coups optimaux.
-                </p>
+        .links a {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: bold;
+        }
 
-                <p class="lang-en">
-                    Java adaptation of the game Onitama featuring two Swing interfaces. 
-                    Includes a networked multiplayer mode via WebSockets and a strategic 
-                    AI powered by the Minimax algorithm for optimal move calculation.
-                </p>
+        /* Sections */
+        section {
+            padding: 60px 20px;
+            scroll-margin-top: 80px;
+        }
 
-                    <a href="https://github.com/akliMelissa/Onitama-" target="_blank" class="source-link">Source Code</a>
-                </div>
-            </div>
+        section h2 {
+            font-size: 2em;
+            margin-bottom: 30px;
+            color: var(--gold);
+            border-bottom: 2px solid var(--gold);
+            padding-bottom: 10px;
+        }
 
-            <div class="project-card">
-                <h3>Classification des Émotions</h3>
-                <div class="details">
-                    <p class="lang-fr">Conception d'un modèle de Deep Learning (CNN) sous Keras/TensorFlow pour classer 8 émotions vocales (Dataset RAVDESS).</p>
-                    <p class="lang-en">Designed a Deep Learning (CNN) model using Keras/TensorFlow to classify 8 vocal emotions (RAVDESS Dataset).</p>
-                    <a href="https://github.com/akliMelissa/projets_ML"  target="_blank" class="source-link">Source Code</a>
-                </div>
-            </div>
+        .gold-line {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+            margin: 40px 0;
+        }
 
-            <div class="project-card">
-                <h3>Risque de Crédit</h3>
-                <div class="details">
-                    <p class="lang-fr">Analyse prédictive de solvabilité avec l'algorithme XGBoost. Déploiement d'une application interactive avec Streamlit.</p>
-                    <p class="lang-en">Predictive solvency analysis using the XGBoost algorithm. Deployment of an interactive app with Streamlit.</p>
-                    <a href="https://github.com/akliMelissa/projets_ML"  target="_blank" class="source-link">Source Code</a>
-                </div>
-            </div>
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid #222;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            transition: transform 0.3s, border-color 0.3s;
+        }
 
-            <div class="project-card">
-                <h3>Éditeur de liens (C)</h3>
-                <div class="details">
-                    <p class="lang-fr">Développement en <strong>C</strong> d’un éditeur pour lecture/modification de fichiers <strong>ELF</strong>, intégré à un simulateur <strong>ARM</strong> avec tests automatisés <strong>Bash</strong>.</p>
-                    <p class="lang-en">Development in <strong>C</strong> of a linker for reading/modifying <strong>ELF</strong> files, integrated into an <strong>ARM</strong> simulator with <strong>Bash</strong> automated tests.</p>
-                    <a href="https://github.com/akliMelissa/projets_academiques/tree/master/%C3%89diteur%20de%20liens/source_code" 
-               target="_blank" class="source-link">Source Code</a>
+        .card:hover {
+            border-color: var(--gold);
+            transform: translateY(-3px);
+        }
 
-                    
-            </div>
-        </div>
+        .card h3 {
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
 
-        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
 
+        .date {
+            color: var(--muted);
+            font-size: 0.9em;
+        }
 
-    </section>
+        /* Grilles */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
 
-    
+        .skills-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
 
-    <script>
-        function setLanguage(lang) {
-            const frElements = document.querySelectorAll('.lang-fr');
-            const enElements = document.querySelectorAll('.lang-en');
+        .skill-item {
+            background: #1a1a1a;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid var(--gold);
+        }
 
-            if (lang === 'fr') {
-                frElements.forEach(el => el.style.display = 'block');
-                enElements.forEach(el => el.style.display = 'none');
-            } else {
-                frElements.forEach(el => el.style.display = 'none');
-                enElements.forEach(el => el.style.display = 'block');
+        .skill-item strong {
+            color: var(--gold);
+        }
+
+        /* Boutons */
+        .btn-gold {
+            display: inline-block;
+            padding: 8px 18px;
+            margin: 5px 5px 5px 0;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 0.85em;
+            border-radius: 4px;
+            transition: all 0.3s;
+            background: transparent;
+        }
+
+        .btn-gold:hover {
+            background: var(--gold);
+            color: #000;
+        }
+
+        /* Langues */
+        .fr { display: block; }
+        .en { display: none; }
+
+        body[data-lang="en"] .fr { display: none; }
+        body[data-lang="en"] .en { display: block; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                padding: 20px 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-content {
+                flex-direction: column;
+            }
+
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .header-right {
+                text-align: center;
+            }
+
+            .header-right h1 {
+                font-size: 1.8em;
+            }
+
+            section {
+                padding: 40px 15px;
+            }
+
+            section h2 {
+                font-size: 1.5em;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
             }
         }
+    </style>
+</head>
+<body data-lang="fr">
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="nav-content">
+            <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
+            <div class="nav-links" id="navLinks">
+                <a href="#about"><span class="fr">À Propos</span><span class="en">About</span></a>
+                <a href="#formation"><span class="fr">Formation</span><span class="en">Education</span></a>
+                <a href="#skills"><span class="fr">Compétences</span><span class="en">Skills</span></a>
+                <a href="#experience"><span class="fr">Expériences</span><span class="en">Experience</span></a>
+                <a href="#projects"><span class="fr">Projets</span><span class="en">Projects</span></a>
+                <a href="#extra"><span class="fr">Infos+</span><span class="en">Extra</span></a>
+            </div>
+            <div class="lang-switcher">
+                <button onclick="switchLang('fr')" class="active" id="btnFr">FR</button>
+                <button onclick="switchLang('en')" id="btnEn">EN</button>
+            </div>
+        </div>
+    </nav>
 
-        // Initialisation au chargement
-        window.onload = () => setLanguage('fr');
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="header-container">
+            <img src="pic2.webp" alt="Melissa Akli" class="profile-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\'%3E%3Crect fill=\'%23222\' width=\'200\' height=\'200\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23D4AF37\' font-size=\'60\' font-family=\'Arial\'%3EMA%3C/text%3E%3C/svg%3E'">                <div class="header-right">
+                    <h1>Melissa Akli</h1>
+                    <p class="gold-text fr">Étudiante en Master 1 Intelligence Artificielle & Data Science</p>
+                    <p class="gold-text en">Master 1 Student in AI & Data Science</p>
+                    <div class="links">
+                        <span>📍 Toulouse | 📞 +33 7 58 74 92 63</span>
+                        <span>✉️ akli.melissa.personnel@gmail.com</span>
+                        <div>
+                             <a href="https://github.com/akliMelissa" target="_blank">GitHub</a> | 
+                             <a href="https://www.linkedin.com/in/melissa-akli-387a171a8/" target="_blank">LinkedIn</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- À Propos -->
+        <section id="about">
+            <h2><span class="fr">À Propos</span><span class="en">About Me</span></h2>
+            <div class="card">
+                <p class="fr">Salut ! Je suis Akli Melissa, étudiante en M1 Intelligence Artificielle, passionnée par l'IA et la robotique. Curieuse et motivée, j'adore explorer les nouveautés en IA (LLM, RAG, NLP...) et je cherche à acquérir de l'expérience concrète : un stage de 4 mois à partir de mai 2026 et une alternance à partir de septembre 2026 (rythme de 2 semaines par mois). Je serais ravie de rejoindre votre équipe et de transformer les défis technologiques en opportunités d'innovation !</p>
+                <p class="en">Hi! I'm Melissa Akli, an M1 AI student passionate about AI and robotics. Curious and driven, I love exploring the latest AI trends (LLMs, RAG, NLP...), and I'm looking for hands-on experience: a 4-month internship starting in May 2026 and a work-study program starting in September 2026 (2 weeks per month). I would be delighted to join your team and turn technological challenges into opportunities for innovation!</p>
+            </div>
+        </section>
+
+        <hr class="gold-line">
+
+        <!-- Formation -->
+        <section id="formation">
+            <h2><span class="fr">Formation</span><span class="en">Education</span></h2>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3><span class="fr">Master 1 Intelligence Artificielle (IAFA)</span><span class="en">Master 1 Artificial Intelligence (IAFA)</span></h3>
+                    <span class="date">2025 - 2027</span>
+                </div>
+                <p><strong>Université Toulouse III – Paul Sabatier, France</strong></p>
+                <p class="fr"><strong>Matières :</strong> Machine Learning, IA symbolique, Traitement du signal (audio, image), Recherche d'information, Introduction à la robotique (ROS).</p>
+                <p class="en"><strong>Courses:</strong> Machine Learning, Symbolic AI, Signal processing (audio, image), Information retrieval, Introduction to robotics (ROS).</p>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3><span class="fr">Licence Informatique</span><span class="en">Bachelor's in Computer Science</span></h3>
+                    <span class="date">2023 - 2025</span>
+                </div>
+                <p><strong>Université Grenoble Alpes (UGA), France</strong></p>
+                <p class="fr">Classée parmi les 10 premiers de la promotion.</p>
+                <p class="en">Ranked among the top 10 students of the class.</p>
+                <p class="fr"><strong>Matières :</strong> Machine Learning, algorithmique avancée, bases de données, développement logiciel.</p>
+                <p class="en"><strong>Courses:</strong> Machine Learning, advanced algorithms, databases, software development.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3><span class="fr">Cycle préparatoire en Intelligence Artificielle</span><span class="en">Preparatory Cycle in Artificial Intelligence</span></h3>
+                    <span class="date">2021 - 2023</span>
+                </div>
+                <p><strong><span class="fr">École Supérieure d'Intelligence Artificielle (ENSIA), Algérie</span><span class="en">Higher School of Artificial Intelligence (ENSIA), Algeria</span></strong></p>
+                <p class="fr"><strong>Matières :</strong> Introduction à l'IA, fouille de données, statistiques et probabilités, bases de données, recherche opérationnelle, développement web, DevOps, séries temporelles, POO.</p>
+                <p class="en"><strong>Courses:</strong> Introduction to AI, data mining, statistics and probability, databases, operations research, web development, DevOps, time series, OOP.</p>
+            </div>
+        </section>
+
+        <hr class="gold-line">
+
+        <!-- Compétences -->
+        <section id="skills">
+            <h2><span class="fr">Compétences Techniques</span><span class="en">Technical Skills</span></h2>
+            <div class="skills-list">
+                <div class="skill-item">
+                    <strong><span class="fr">Langages :</span><span class="en">Languages:</span></strong>
+                    Python, Java, C, C++, SQL, PHP, JavaScript, HTML/CSS
+                </div>
+                <div class="skill-item">
+                    <strong><span class="fr">Intelligence Artificielle :</span><span class="en">AI & Data Science:</span></strong>
+                    PyTorch, TensorFlow, Scikit-learn, LangGraph, GraphRAG, NLP, LLMs
+                </div>
+                <div class="skill-item">
+                    <strong><span class="fr">Outils & Frameworks :</span><span class="en">Tools & Frameworks:</span></strong>
+                    Git, Docker, Linux, React.js, Streamlit, n8n, MySQL
+                </div>
+            </div>
+        </section>
+
+        <hr class="gold-line">
+
+        <!-- Expériences -->
+        <section id="experience">
+            <h2><span class="fr">Expériences Professionnelles</span><span class="en">Professional Experience</span></h2>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3><span class="fr">Chatbot Juridique (GraphRAG) - Made In Tracker</span><span class="en">Legal Chatbot (GraphRAG) - Made In Tracker</span></h3>
+                    <span class="date"><span class="fr">Oct. 2025 - Présent</span><span class="en">Oct. 2025 - Present</span></span>
+                </div>
+                <p class="fr">Développement d'un "NotebookLM Juridique" dédié à la conformité du Règlement sur les Dispositifs Médicaux (MDR).</p>
+                <p class="en">Development of a "Legal NotebookLM" dedicated to Medical Device Regulation (MDR) compliance.</p>
+                <ul>
+                    <li class="fr"><strong>Architecture GraphRAG :</strong> Transformation de documents PDF complexes en Graphes de Connaissances (Ontologies TBox/ABox) pour éliminer les hallucinations.</li>
+                    <li class="en"><strong>GraphRAG Architecture:</strong> Transforming complex PDF documents into Knowledge Graphs (TBox/ABox Ontologies) to eliminate hallucinations.</li>
+                    <li class="fr"><strong>Agents IA :</strong> Orchestration d'agents autonomes via LangGraph et n8n utilisant le protocole MCP (Model Context Protocol).</li>
+                    <li class="en"><strong>AI Agents:</strong> Orchestration of autonomous agents via LangGraph and n8n using the MCP (Model Context Protocol).</li>
+                    <li class="fr"><strong>Interface :</strong> Vue splitée permettant une traçabilité 100% vérifiable vers la source exacte du document.</li>
+                    <li class="en"><strong>Interface:</strong> Split-view design ensuring 100% verifiable traceability to the exact document source.</li>
+                </ul>
+                <p><strong>Tech:</strong> Python, Neo4j, LangGraph, Docker, spaCy.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3><span class="fr">Stage Intelligence Artificielle - CodeAlpha</span><span class="en">AI Internship - CodeAlpha</span></h3>
+                    <span class="date"><span class="fr">Juin 2025 </span><span class="en">June 2025</span></span>
+                </div>
+                <p class="fr">Stage axé sur le développement de solutions d'IA concrètes :</p>
+                <p class="en">Internship focused on developing practical AI solutions:</p>
+                <ul>
+                    <li class="fr"><strong>Chatbot FAQ :</strong> Création d'un Chatbot FAQ avec NLTK utilisant la similarité cosinus (TF-IDF).</li>
+                    <li class="en"><strong>FAQ Chatbot:</strong> Created a FAQ Chatbot with NLTK using cosine similarity (TF-IDF).</li>
+                    <li class="fr"><strong>Génération de musique par Deep Learning :</strong> Implémentation d'un modèle WGAN-GP sous TensorFlow pour la génération autonome de musique (piano-roll MIDI).</li>
+                    <li class="en"><strong>Music generation with Deep Learning:</strong> Implemented a WGAN-GP model with TensorFlow for autonomous music generation (MIDI piano-roll).</li>
+                    <li class="fr"><strong>Outil de traduction automatique :</strong> Développement d'une application de traduction multilingue avec Streamlit intégrée à l'API Google Translate.</li>
+                    <li class="en"><strong>Automatic translation tool:</strong> Built a multilingual translation application with Streamlit integrated with the Google Translate API.</li>
+                </ul>
+                <p><strong>Tech:</strong> Python, TensorFlow, NLTK, Streamlit.</p>
+            </div>
+        </section>
+
+        <hr class="gold-line">
+
+        <!-- Projets -->
+        <section id="projects">
+            <h2><span class="fr">Projets Académiques</span><span class="en">Academic Projects</span></h2>
+            <div class="grid">
+                <div class="card">
+                    <h3><span class="fr">Performee (Site Web)</span><span class="en">Performee (Website)</span></h3>
+                    <p class="fr">Plateforme web Full-Stack (React.js, PHP, MySQL) dédiée aux artistes : messagerie instantanée, gestion de comptes multi-rôles et portfolio multimédia.</p>
+                    <p class="en">Full-stack web platform (React.js, PHP, MySQL) for artists: instant messaging, multi-role account management, and multimedia portfolio.</p>
+                    <div>
+                        <a href="demo.HTML" class="btn-gold"><span class="fr">Voir Démo</span><span class="en">View Demo</span></a>
+                        <a href="https://github.com/akliMelissa/projets_academiques/tree/master/performee%20site%20web" class="btn-gold"><span class="fr">Source Code</span><span class="en">Source Code</span></a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3><span class="fr">Onitama (Jeu Vidéo)</span><span class="en">Onitama (Video Game)</span></h3>
+                    <p class="fr">Adaptation du jeu Onitama en Java avec deux interfaces Swing. Intégration d'un mode multijoueur en réseau via WebSockets et d'une IA performante basée sur l'algorithme Minimax pour le calcul de coups optimaux.</p>
+                    <p class="en">Java adaptation of the game Onitama featuring two Swing interfaces. Includes a networked multiplayer mode via WebSockets and a strategic AI powered by the Minimax algorithm for optimal move calculation.</p>
+                    <a href="https://github.com/akliMelissa/Onitama-"  class="btn-gold"><span class="fr">Source Code</span><span class="en">Source Code</span></a>
+                </div>
+
+                <div class="card">
+                    <h3><span class="fr">Classification des Émotions</span><span class="en">Emotion Classification</span></h3>
+                    <p class="fr">Conception d'un modèle de Deep Learning (CNN) sous Keras/TensorFlow pour classer 8 émotions vocales (Dataset RAVDESS).</p>
+                    <p class="en">Designed a Deep Learning (CNN) model using Keras/TensorFlow to classify 8 vocal emotions (RAVDESS Dataset).</p>
+                    <a href="https://github.com/akliMelissa/projets_ML" class="btn-gold"><span class="fr">Source Code</span><span class="en">Source Code</span></a>
+                </div>
+
+                <div class="card">
+                    <h3><span class="fr">Risque de Crédit</span><span class="en">Credit Risk</span></h3>
+                    <p class="fr">Analyse prédictive de solvabilité avec l'algorithme XGBoost. Déploiement d'une application interactive avec Streamlit.</p>
+                    <p class="en">Predictive solvency analysis using the XGBoost algorithm. Deployment of an interactive app with Streamlit.</p>
+                    <a href="https://github.com/akliMelissa/projets_ML" class="btn-gold"><span class="fr">Source Code</span><span class="en">Source Code</span></a>
+                </div>
+
+                <div class="card">
+                    <h3><span class="fr">Éditeur de liens (C)</span><span class="en">Linker Editor (C)</span></h3>
+                    <p class="fr">Développement en C d'un éditeur pour lecture/modification de fichiers ELF, intégré à un simulateur ARM avec tests automatisés Bash.</p>
+                    <p class="en">Development in C of a linker for reading/modifying ELF files, integrated into an ARM simulator with Bash automated tests.</p>
+                    <a href="https://github.com/akliMelissa/projets_academiques/tree/master/%C3%89diteur%20de%20liens/source_code" class="btn-gold"><span class="fr">Source Code</span><span class="en">Source Code</span></a>
+                </div>
+            </div>
+        </section>
+
+        <hr class="gold-line">
+
+        <!-- Informations Complémentaires -->
+        <section id="extra">
+            <h2><span class="fr">Informations Complémentaires</span><span class="en">Additional Information</span></h2>
+            <div class="skills-list">
+                <div class="skill-item">
+                    <strong><span class="fr">Langues :</span><span class="en">Languages:</span></strong>
+                    <span class="fr">Français (C1), Anglais (C1), Berbère (Maternel)</span>
+                    <span class="en">French (C1), English (C1), Berber (Native)</span>
+                </div>
+                <div class="skill-item">
+                    <strong><span class="fr">Engagement :</span><span class="en">Engagement:</span></strong>
+                    <span class="fr">Membre actif des clubs Ensia - SecAi, ETC</span>
+                    <span class="en">Active member of Ensia - SecAi, ETC scientific clubs</span>
+                </div>
+                <div class="skill-item">
+                    <strong><span class="fr">Expérience Complémentaire :</span><span class="en">Additional Experience:</span></strong>
+                    <span class="fr">Serveuse (2024) - Au Mets Cliché, Grenoble</span>
+                    <span class="en">Waitress (2024) - Au Mets Cliché, Grenoble</span>
+                </div>
+                <div class="skill-item">
+                    <strong><span class="fr">Centres d'intérêt :</span><span class="en">Interests:</span></strong>
+                    <span class="fr">Programmation, Voyages, Sport, Lecture</span>
+                    <span class="en">Programming, Traveling, Sports, Reading</span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        function switchLang(lang) {
+            document.body.setAttribute('data-lang', lang);
+            document.getElementById('btnFr').classList.toggle('active', lang === 'fr');
+            document.getElementById('btnEn').classList.toggle('active', lang === 'en');
+        }
+
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        // Fermer le menu mobile lors du clic sur un lien
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    document.getElementById('navLinks').classList.remove('active');
+                }
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
     </script>
 </body>
 </html>
